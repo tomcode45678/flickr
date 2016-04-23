@@ -4,6 +4,7 @@
   "description": "Flickr app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint src -c .jshintrc",
     "build": "./node_modules/.bin/gulp",
     "dev": "./node_modules/.bin/gulp watch-js",
     "production": "./node_modules/.bin/gulp --env=production"
@@ -30,6 +31,7 @@
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
+    "jshint": "^2.9.2",
     "run-sequence": "^1.1.5"
   }
 }
