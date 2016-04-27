@@ -1,5 +1,3 @@
-/* globals window, document */
-
 import DisplayImages from './display-images';
 
 const TAGS = 'london';

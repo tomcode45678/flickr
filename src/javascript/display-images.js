@@ -1,5 +1,3 @@
-/* globals document */
-
 export default class DisplayImages {
   constructor (data) {
     this.images = data.items;
