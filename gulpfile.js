@@ -32,6 +32,8 @@ const tools = {
   plumber: plumber
 };
 
+require('./build-tasks/css')(gulp, tools, defaultTasks, env);
+
 require('./build-tasks/javascript')(gulp, tools, defaultTasks, env);
 
 gulp.task('default', done => {
