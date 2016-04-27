@@ -6,9 +6,9 @@ const loadingSpinner = document.querySelector('[data-loading-spinner]');
 
 window.dataHandler = function (data) {
   new DisplayImages(data);
-  
+
   if (loadingSpinner) {
-    loadingSpinner.classList.remove('show');
+    loadingSpinner.classList.remove('spinner--show');
   }
 };
 
