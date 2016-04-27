@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Flickr app",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/karma/bin/karma start",
     "lint": "jshint src -c .jshintrc",
     "build": "./node_modules/.bin/gulp",
     "dev": "./node_modules/.bin/gulp watch-js",
@@ -31,7 +31,15 @@
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
+    "jasmine-core": "^2.4.1",
     "jshint": "^2.9.2",
+    "karma": "^0.13.22",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-coverage": "^0.5.5",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.7",
     "run-sequence": "^1.1.5"
   }
 }

@@ -4,7 +4,9 @@ export default class DisplayImages {
   constructor (data) {
     this.images = data.items;
     this.imageContainer = document.querySelector('[data-image-container]');
-    this.renderAssets(data.items);
+    if (this.imageContainer) {
+      this.renderAssets(data.items);
+    }
   }
 
   renderAssets(assets) {
