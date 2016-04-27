@@ -1,0 +1,10 @@
+section {
+  article {
+    float: left;
+    width: 33%;
+  }
+
+  p:nth-child(odd) {
+    display: none;
+  }
+}
