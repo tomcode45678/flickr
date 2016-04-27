@@ -19,6 +19,7 @@ gulp.task('clean', () => {
 });
 
 let defaultTasks = [];
+let watchTasks = [];
 
 const tools = {
   sourcemaps: sourcemaps,
@@ -32,9 +33,11 @@ const tools = {
   plumber: plumber
 };
 
-require('./build-tasks/css')(gulp, tools, defaultTasks, env);
+require('./build-tasks/css')(gulp, tools, defaultTasks, watchTasks, env);
 
-require('./build-tasks/javascript')(gulp, tools, defaultTasks, env);
+require('./build-tasks/javascript')(gulp, tools, defaultTasks, watchTasks, env);
+
+gulp.task('watch', watchTasks);
 
 gulp.task('default', done => {
   runSequence('clean', defaultTasks, done);

@@ -4,7 +4,7 @@ const SRC = 'src/scss/**/*.scss';
 const sass = require('gulp-sass');
 const DIST = 'dist/css';
 
-module.exports = function (gulp, tools, defaultTasks, env) {
+module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
   // Destructuring not supported yet
   // let {sourcemaps, concat, debug, gutil, uglify, gutil, runSequence, changed} = tools;
 
@@ -32,4 +32,5 @@ module.exports = function (gulp, tools, defaultTasks, env) {
   gulp.task('build-css', ['compile-css']);
 
   defaultTasks.push('build-css');
+  watchTasks.push('watch-css');
 }

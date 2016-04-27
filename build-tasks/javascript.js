@@ -5,7 +5,7 @@ const LIBRARIES = 'src/**/lib/*.js'
 const babel = require('gulp-babel');
 const DIST = 'dist/javascript';
 
-module.exports = function (gulp, tools, defaultTasks, env) {
+module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
   // Destructuring not supported yet
   // let {sourcemaps, concat, debug, gutil, uglify, gutil, runSequence, changed} = tools;
 
@@ -41,4 +41,5 @@ module.exports = function (gulp, tools, defaultTasks, env) {
   gulp.task('build-js', ['compile-js', 'move-lib-js']);
 
   defaultTasks.push('build-js');
+  watchTasks.push('watch-js');
 }
