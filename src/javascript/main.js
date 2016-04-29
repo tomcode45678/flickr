@@ -6,14 +6,22 @@ const loadingSpinner = document.querySelector('[data-loading-spinner]');
 
 window.dataHandler = function (data) {
   new DisplayImages(data);
-
-  if (loadingSpinner) {
-    loadingSpinner.classList.remove('spinner--show');
-  }
+  loadingSpinner.classList.remove('spinner--show');
 };
 
 let script = document.createElement('script');
 script.src = API;
-document.body.appendChild(script);
 
-export let callback = 'dataHandler';
+script.onerror = function (e) {
+  let sorryMessage = document.createElement('div');
+  let sorry = document.createTextNode(`
+    We're sorry, we could not retrieve any images from Flickr.
+    This is most likely connectivity issues, please make sure you are still connected to the internet.
+  `);
+
+  sorryMessage.appendChild(sorry);
+  document.body.appendChild(sorryMessage);
+  loadingSpinner.classList.remove('spinner--show');
+};
+
+document.body.appendChild(script);
