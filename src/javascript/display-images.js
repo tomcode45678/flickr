@@ -2,8 +2,10 @@ export default class DisplayImages {
   constructor (data) {
     this.images = data.items;
     this.imageContainer = document.querySelector('[data-image-container]');
+
     if (this.imageContainer) {
       this.renderAssets(data.items);
+      this.bindEvents();
     }
   }
 
@@ -21,5 +23,18 @@ export default class DisplayImages {
     let article = document.createElement('article');
     article.innerHTML = asset.description;
     return article;
+  }
+
+  bindEvents() {
+    this.imageContainer.addEventListener('click', this.selectedHandler.bind(this));
+  }
+
+  selectedHandler(e) {
+    let target = e.target;
+    if (target.nodeName === "IMG") {
+      target.classList.toggle('selected');
+    }
+
+    e.preventDefault();
   }
 }
