@@ -12,7 +12,7 @@ window.dataHandler = function (data) {
 let script = document.createElement('script');
 script.src = API;
 
-script.onerror = function (e) {
+script.onerror = function () {
   let sorryMessage = document.createElement('div');
   let sorry = document.createTextNode(`
     We're sorry, we could not retrieve any images from Flickr.
