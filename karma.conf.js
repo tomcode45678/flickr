@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (config) {
-  config.set({
+  let configuration = {
     basePath: '',
     frameworks: [
       'jasmine'
@@ -9,14 +9,18 @@ module.exports = function (config) {
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
       'karma-babel-preprocessor',
       'karma-coverage'
     ],
     browsers: [
-      //'PhantomJS',
       'Chrome'
     ],
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: [
       'progress',
       'coverage'
@@ -48,5 +52,10 @@ module.exports = function (config) {
       type: 'html',
       dir: 'test/coverage/javascript'
     }
-  });
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+  config.set(configuration);
 };
