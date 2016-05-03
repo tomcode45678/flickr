@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Flickr app",
   "scripts": {
-    "ci": "./node_modules/karma/bin/karma start --single-run --browsers Chrome",
+    "ci": "./node_modules/karma/bin/karma start --single-run",
     "test": "./node_modules/karma/bin/karma start",
     "lint": "./node_modules/jshint/bin/jshint src -c .jshintrc",
     "build": "./node_modules/gulp/bin/gulp.js",
