@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "description": "Flickr app",
   "scripts": {
-    "ci": "karma start --single-run --browsers Chrome",
+    "ci": "./node_modules/karma/bin/karma start --single-run --browsers Chrome",
     "test": "./node_modules/karma/bin/karma start",
-    "lint": "jshint src -c .jshintrc",
-    "build": "./node_modules/.bin/gulp",
-    "dev": "./node_modules/.bin/gulp watch",
-    "production": "./node_modules/.bin/gulp --env=production"
+    "lint": "./node_modules/jshint/bin/jshint src -c .jshintrc",
+    "build": "./node_modules/gulp/bin/gulp.js",
+    "dev": "./node_modules/gulp/bin/gulp.js watch",
+    "production": "./node_modules/gulp/bin/gulp.js --env=production"
   },
   "repository": {
     "type": "git",

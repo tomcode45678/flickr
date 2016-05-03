@@ -4,6 +4,7 @@ node_js:
   - "4"
 install:
   - npm install -g jshint
+script: "npm i"
 script: "npm run lint"
 script: "npm run ci"
 before_script:
