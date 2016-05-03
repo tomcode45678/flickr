@@ -9,4 +9,4 @@ before_install:
 before_script:
   - 'npm i'
 script: "npm run lint"
-script: "node_modules/karma/bin/karma start karma.conf.js --single-run"
+script: "npm build && node_modules/karma/bin/karma start karma.conf.js --single-run"
