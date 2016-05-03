@@ -31,7 +31,7 @@ module.exports = function (config) {
       'test/test-main.js'
     ],
     exclude: [
-
+      'src/javascript/lib/**/*.js'
     ],
     preprocessors: {
       'src/javascript/**/*.js': ['babel', 'coverage'],
