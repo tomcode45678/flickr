@@ -6,7 +6,6 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const debug = require('gulp-debug');
 const gutil = require('gulp-util');
-const uglify = require('gulp-uglify');
 const del = require('del');
 const runSequence = require('run-sequence');
 const changed = require('gulp-changed');
@@ -25,8 +24,6 @@ const tools = {
   sourcemaps: sourcemaps,
   concat: concat,
   debug: debug,
-  gutil: gutil,
-  uglify: uglify,
   gutil: gutil,
   runSequence: runSequence,
   changed: changed,

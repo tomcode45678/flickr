@@ -3,11 +3,12 @@
 const SRC = 'src/**/*.js';
 const LIBRARIES = 'src/**/lib/*.js'
 const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 const DIST = 'dist/javascript';
 
 module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
   // Destructuring not supported yet
-  // let {sourcemaps, concat, debug, gutil, uglify, gutil, runSequence, changed} = tools;
+  // let {sourcemaps, concat, debug, gutil, runSequence, changed} = tools;
 
   // Default params not supported yet
   if (!env) {
@@ -21,7 +22,7 @@ module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
     .pipe(tools.sourcemaps.init())
     .pipe(babel())
     .pipe(tools.concat('vendor.min.js'))
-    .pipe(env === 'production' ? tools.uglify() : tools.gutil.noop())
+    .pipe(env === 'production' ? uglify() : tools.gutil.noop())
     .pipe(tools.sourcemaps.write('.'))
     .pipe(gulp.dest(DIST))
     .pipe(tools.debug({title: 'Compiling using Babel:'}));
@@ -34,7 +35,7 @@ module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
   gulp.task('move-lib-js', () => {
     gulp.src(LIBRARIES)
     .pipe(tools.concat('libs.min.js'))
-    .pipe(tools.uglify())
+    .pipe(uglify())
     .pipe(gulp.dest(DIST));
   });
 

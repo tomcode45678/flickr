@@ -2,11 +2,12 @@
 
 const SRC = 'src/scss/**/*.scss';
 const sass = require('gulp-sass');
+const cssnano = require('gulp-cssnano');
 const DIST = 'dist/css';
 
 module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
   // Destructuring not supported yet
-  // let {sourcemaps, concat, debug, gutil, uglify, gutil, runSequence, changed} = tools;
+  // let {sourcemaps, concat, debug, gutil, runSequence, changed} = tools;
 
   // Default params not supported yet
   if (!env) {
@@ -19,7 +20,7 @@ module.exports = function (gulp, tools, defaultTasks, watchTasks, env) {
     .pipe(watch ? tools.plumber() : tools.gutil.noop())
     .pipe(tools.sourcemaps.init())
     .pipe(sass())
-    .pipe(env === 'production' ? tools.uglify() : tools.gutil.noop())
+    .pipe(env === 'production' ? cssnano() : tools.gutil.noop())
     .pipe(tools.sourcemaps.write('.'))
     .pipe(gulp.dest(DIST))
     .pipe(tools.debug({title: 'Compiling using Babel:'}));
