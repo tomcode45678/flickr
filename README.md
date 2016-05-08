@@ -1,8 +1,11 @@
-# Flickr [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr)
+# Flickr [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr) [http://tomsta93.github.io/flickr/]([http://tomsta93.github.io/flickr/])
 Flickr application that allows users to saves images from the Flickr service posted under London.
 
 ## Intro
 This application was build using ES6, SystemJS and Karma to represent a modern single page application complete with unit testing using Travis CI.
+
+## Demo
+[http://tomsta93.github.io/flickr/](http://tomsta93.github.io/flickr/)
 
 ## Dev
 ### Install
