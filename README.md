@@ -1,4 +1,4 @@
-# Flickr [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr) [http://tomsta93.github.io/flickr/]([http://tomsta93.github.io/flickr/])
+# Flickr [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr)
 Flickr application that allows users to saves images from the Flickr service posted under London.
 
 ## Intro
