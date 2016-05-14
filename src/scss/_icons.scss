@@ -1,0 +1,8 @@
+span.mdl-badge[data-badge]:after {
+  color: #FFF;
+  background: rgba(225, 225, 225, 0.6);
+}
+
+span.mdl-badge--heart[data-badge]:after {
+  color: #F00;
+}

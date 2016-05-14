@@ -1,3 +1,12 @@
+body {
+  font-family: $primary-font;
+  background: $background-colour;
+}
+
+h1 {
+  font-size: 2em;
+}
+
 section {
   width: 85%;
   margin: 0 auto;
