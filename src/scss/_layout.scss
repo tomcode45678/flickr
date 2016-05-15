@@ -6,6 +6,10 @@ body {
 section.content {
   width: 85%;
   margin: 0 auto;
+
+  &.mdl-grid {
+    align-items: center;
+  }
 }
 
 @import 'loader';
