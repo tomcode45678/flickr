@@ -38,13 +38,19 @@ export default class DisplayImages {
     let imageCardActions = document.createElement('div');
     imageCardActions.className = 'mdl-card__actions';
 
-    let imageCardTitle = document.createElement('span');
-    imageCardTitle.className = 'card-image__title';
+    let imageCardTitle = document.createElement('div');
+    imageCardTitle.className = 'card-image card-image__title';
 
     let imageTitle = document.createTextNode(asset.title);
     imageCardTitle.appendChild(imageTitle);
 
+    let imageCardSaved = document.createElement('div');
+    imageCardSaved.className = 'card-image card-image__saved';
+
+    imageCardSaved.innerHTML = '&#x2665;';
+
     imageCardActions.appendChild(imageCardTitle);
+    imageCardActions.appendChild(imageCardSaved);
 
     imageCard.appendChild(image);
     imageCard.appendChild(imageCardActions);
@@ -60,7 +66,7 @@ export default class DisplayImages {
 
     if (target.nodeName !== "ARTICLE") {
       target = target.parentNode;
-      if (target.nodeName === "SPAN") {
+      if (target.className === 'mdl-card__actions') {
         target = target.parentNode;
       }
     }

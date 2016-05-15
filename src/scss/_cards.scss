@@ -3,7 +3,9 @@ article.mdl-card {
   cursor: pointer;
 
   &.saved {
-    border: 2px solid $outline-colour;
+    .card-image__saved {
+      color: #F00;
+    }
   }
 
   img {
@@ -19,8 +21,18 @@ article.mdl-card {
   position: absolute;
   bottom: 0;
 }
-.card-image__title {
-  color: #fff;
-  font-size: 14px;
+
+.card-image {
+  color: #FFF;
   font-weight: 500;
+
+  &__title {
+    float: left;
+    font-size: 1em;
+  }
+
+  &__saved {
+    float: right;
+    font-size: 1em;
+  }
 }
