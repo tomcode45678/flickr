@@ -1,4 +1,4 @@
-const SELECTED = 'selected';
+const SAVED = 'saved';
 
 export default class DisplayImages {
   constructor (data) {
@@ -23,18 +23,32 @@ export default class DisplayImages {
   }
 
   renderAsset(asset) {
-    let article = document.createElement('article');
-    let desc = document.createElement('div');
+    let imageCardClass = 'mdl-card mdl-shadow--2dp';
+    let imageCard = document.createElement('article');
 
+    let desc = document.createElement('div');
     desc.innerHTML = asset.description;
     let image = desc.querySelector('img');
 
     if (this.savedImage(image)) {
-      image.classList.add(SELECTED);
+      imageCardClass = `${imageCardClass} ${SAVED}`;
     }
+    imageCard.className = imageCardClass;
 
-    article.appendChild(image);
-    return article;
+    let imageCardActions = document.createElement('div');
+    imageCardActions.className = 'mdl-card__actions';
+
+    let imageCardTitle = document.createElement('span');
+    imageCardTitle.className = 'card-image__title';
+
+    let imageTitle = document.createTextNode(asset.title);
+    imageCardTitle.appendChild(imageTitle);
+
+    imageCardActions.appendChild(imageCardTitle);
+
+    imageCard.appendChild(image);
+    imageCard.appendChild(imageCardActions);
+    return imageCard;
   }
 
   bindEvents() {
@@ -44,15 +58,19 @@ export default class DisplayImages {
   selectedHandler(e) {
     let target = e.target;
 
-    if (target.nodeName === "IMG") {
-      target.classList.toggle(SELECTED);
-      this.toggleSavedImage(target);
+    if (target.nodeName !== "ARTICLE") {
+      target = target.parentNode;
+      if (target.nodeName === "SPAN") {
+        target = target.parentNode;
+      }
     }
-    e.preventDefault();
+
+    target.classList.toggle(SAVED);
+    this.toggleSavedImage(target, target.querySelector('img'));
   }
 
-  toggleSavedImage(selectedImage) {
-    if (selectedImage.classList.contains(SELECTED)) {
+  toggleSavedImage(imageCard, selectedImage) {
+    if (imageCard.classList.contains(SAVED)) {
       this.savedImages.push(selectedImage.src);
     }
     else {
