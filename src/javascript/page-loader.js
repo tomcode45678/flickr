@@ -31,7 +31,7 @@ export default class PageLoader {
   }
 
   loadPage(page) {
-    for (let i = 0, pageCallbacksLength = this.pageCallbacks.length; i < this.pageCallbacksLength; i++) {
+    for (let i = 0, pageCallbacksLength = this.pageCallbacks.length; i < pageCallbacksLength; i++) {
       let callbackOption = this.pageCallbacks[i];
       if (callbackOption.page === page) {
         callbackOption.callback();
