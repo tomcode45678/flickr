@@ -23,7 +23,7 @@ export default class DisplayImages {
   }
 
   renderAsset(asset) {
-    let imageCardClass = 'mdl-cell mdl-cell--3-col mdl-card mdl-shadow--2dp';
+    let imageCardClass = 'mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--8-col-phone mdl-card mdl-shadow--2dp';
     let imageCard = document.createElement('article');
 
     let desc = document.createElement('div');
