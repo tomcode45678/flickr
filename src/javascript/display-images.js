@@ -2,6 +2,10 @@ const SAVED = 'saved';
 
 export default class DisplayImages {
   constructor (data) {
+    if (!data) {
+      return;
+    }
+
     this.images = data.items;
     this.imageContainer = document.querySelector('[data-image-container]');
     this.savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
