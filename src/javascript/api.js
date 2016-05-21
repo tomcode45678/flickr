@@ -1,9 +1,9 @@
 const loadingSpinner = document.querySelector('[data-loading-spinner]');
 
 export default class API {
-  constructor (url, callback, dataHandler) {
+  constructor (url, callback, dataHandler, clearContent) {
     this.setHandler(callback, dataHandler);
-    this.loadUrl(url);
+    this.loadUrl(url, clearContent);
   }
 
   setHandler(callback, dataHandler) {
@@ -13,9 +13,17 @@ export default class API {
     };
   }
 
-  loadUrl(url) {
+  clearUI(clearContent) {
+    loadingSpinner.classList.add("spinner--show");
+    if (clearContent) {
+      clearContent.innerHTML = '';
+    }
+  }
+
+  loadUrl(url, clearContent) {
     let script = document.createElement('script');
     script.src = url;
+    this.clearUI(clearContent);
 
     script.onerror = function () {
       let sorryMessage = document.createElement('div');

@@ -115,4 +115,8 @@ export default class DisplayImages {
     }
     return result;
   }
+
+  renderSaved() {
+    this.renderAssets(this.images);
+  }
 }

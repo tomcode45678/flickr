@@ -1,4 +1,6 @@
 const DEFAULT_NAV = document.querySelectorAll('[data-nav]');
+const LAYOUT = document.querySelector('[data-mdl-layout]');
+const DRAWER = document.querySelector('[data-drawer]');
 
 export default class PageLoader {
   constructor (pageCallbacks, navigations = DEFAULT_NAV) {
@@ -31,6 +33,10 @@ export default class PageLoader {
   }
 
   loadPage(page) {
+    if (LAYOUT && DRAWER && DRAWER.classList.contains('is-visible')) {
+      LAYOUT.MaterialLayout.toggleDrawer();
+    }
+
     for (let i = 0, pageCallbacksLength = this.pageCallbacks.length; i < pageCallbacksLength; i++) {
       let callbackOption = this.pageCallbacks[i];
       if (callbackOption.page === page) {

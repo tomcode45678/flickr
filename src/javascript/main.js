@@ -2,17 +2,20 @@ import API from './api';
 import DisplayImages from './display-images';
 import PageLoader from './page-loader';
 
-const TAGS = 'landscape';
+const TAGS = 'beautiful landscape';
 const callback = 'dataHandler';
 const URL_PATH = `http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=${callback}&tags=${TAGS}`;
+const imageContainer = document.querySelector('[data-image-container]');
 
-new API(URL_PATH, callback, DisplayImages);
+function urlRequest () {
+  new API(URL_PATH, callback, DisplayImages, imageContainer);
+}
 
-let displayImages = new DisplayImages();
+urlRequest();
 
-let pageCallbacks = [
-  { page: 'index', callback: displayImages.renderDefault },
-  { page: 'saved', callback: displayImages.renderSaved }
+let pageActions = [
+  { page: 'index', callback: urlRequest },
+  { page: 'saved', callback: 'dataHandler.renderSaved' }
 ];
 
-new PageLoader(pageCallbacks);
+new PageLoader(pageActions);
