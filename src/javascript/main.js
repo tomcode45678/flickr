@@ -6,16 +6,22 @@ const TAGS = 'beautiful landscape';
 const callback = 'dataHandler';
 const URL_PATH = `http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=${callback}&tags=${TAGS}`;
 const imageContainer = document.querySelector('[data-image-container]');
+let lastAPICall = null;
 
-function urlRequest () {
-  new API(URL_PATH, callback, DisplayImages, imageContainer);
-}
+let urlRequest = function () {
+  lastAPICall = new API(URL_PATH, callback, DisplayImages, imageContainer);
+};
 
 urlRequest();
 
-let pageActions = [
-  { page: 'index', callback: urlRequest },
-  { page: 'saved', callback: 'dataHandler.renderSaved' }
-];
+let renderSavedImages = function () {
+  let displayImages = new DisplayImages();
 
-new PageLoader(pageActions);
+  lastAPICall.clearUI(imageContainer);
+  displayImages.renderSaved(lastAPICall.requestComplete);
+};
+
+new PageLoader([
+  { page: 'index', callback: urlRequest },
+  { page: 'saved', callback: renderSavedImages }
+]);

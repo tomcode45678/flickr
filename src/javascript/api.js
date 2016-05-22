@@ -1,15 +1,17 @@
 const loadingSpinner = document.querySelector('[data-loading-spinner]');
+let requestComplete = () => loadingSpinner.classList.remove('spinner--show');
 
 export default class API {
   constructor (url, callback, dataHandler, clearContent) {
     this.setHandler(callback, dataHandler);
     this.loadUrl(url, clearContent);
+    this.requestComplete = requestComplete;
   }
 
   setHandler(callback, dataHandler) {
     window[callback] = function (data) {
       new dataHandler(data);
-      loadingSpinner.classList.remove('spinner--show');
+      requestComplete();
     };
   }
 
@@ -34,7 +36,7 @@ export default class API {
 
       sorryMessage.appendChild(sorry);
       document.body.appendChild(sorryMessage);
-      loadingSpinner.classList.remove('spinner--show');
+      requestComplete();
     };
 
     document.body.appendChild(script);

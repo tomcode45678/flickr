@@ -2,15 +2,11 @@ const SAVED = 'saved';
 
 export default class DisplayImages {
   constructor (data) {
-    if (!data) {
-      return;
-    }
-
-    this.images = data.items;
     this.imageContainer = document.querySelector('[data-image-container]');
     this.savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
 
-    if (this.imageContainer) {
+    if (this.imageContainer && data) {
+      this.images = data.items;
       this.renderAssets(data.items);
       this.bindEvents();
     }
@@ -29,12 +25,21 @@ export default class DisplayImages {
   renderAsset(asset) {
     let imageCardClass = 'mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--8-col-phone mdl-card mdl-shadow--2dp';
     let imageCard = document.createElement('article');
+    let imageSrc = asset;
+    let image = null;
 
-    let desc = document.createElement('div');
-    desc.innerHTML = asset.description;
-    let image = desc.querySelector('img');
+    if (typeof asset === 'object') {
+      let desc = document.createElement('div');
+      desc.innerHTML = asset.description;
+      image = desc.querySelector('img');
+      imageSrc = image.src;
+    }
+    else {
+      image = document.createElement('img');
+      image.src = imageSrc;
+    }
 
-    if (this.savedImage(image)) {
+    if (this.savedImage(imageSrc)) {
       imageCardClass = `${imageCardClass} ${SAVED}`;
     }
     imageCard.className = imageCardClass;
@@ -45,8 +50,10 @@ export default class DisplayImages {
     let imageCardTitle = document.createElement('div');
     imageCardTitle.className = 'card-image card-image__title';
 
-    let imageTitle = document.createTextNode(asset.title);
-    imageCardTitle.appendChild(imageTitle);
+    if (asset.title) {
+      let imageTitle = document.createTextNode(asset.title);
+      imageCardTitle.appendChild(imageTitle);
+    }
 
     let imageCardSaved = document.createElement('div');
     imageCardSaved.className = 'card-image card-image__saved';
@@ -68,11 +75,8 @@ export default class DisplayImages {
   selectedHandler(e) {
     let target = e.target;
 
-    if (target.nodeName !== "ARTICLE") {
+    while (target.nodeName !== "ARTICLE" && target !== document) {
       target = target.parentNode;
-      if (target.className === 'mdl-card__actions') {
-        target = target.parentNode;
-      }
     }
 
     target.classList.toggle(SAVED);
@@ -94,6 +98,7 @@ export default class DisplayImages {
       let image = this.savedImages[i];
       if (selectedImage === image) {
         this.savedImages.splice(i, 1);
+        break;
       }
     }
   }
@@ -103,12 +108,12 @@ export default class DisplayImages {
     localStorage.setItem('savedImages', JSON.stringify(this.savedImages));
   }
 
-  savedImage(image) {
+  savedImage(imageSrc) {
     let result = false;
 
     for (let i = 0; i < this.savedImages.length; i++) {
       let savedImage = this.savedImages[i];
-      if (image.src === savedImage) {
+      if (imageSrc === savedImage) {
         result = true;
         break;
       }
@@ -116,7 +121,8 @@ export default class DisplayImages {
     return result;
   }
 
-  renderSaved() {
-    this.renderAssets(this.images);
+  renderSaved(callback) {
+    this.renderAssets(this.savedImages);
+    callback();
   }
 }
