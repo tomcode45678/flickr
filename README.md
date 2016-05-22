@@ -1,5 +1,5 @@
 # Flickr [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr)
-Flickr application that allows users to saves images from the Flickr service posted under London.
+Lightweight, single page application utilising the Flickr API, that allows users to save and view favourite images locally.
 
 ## Intro
 This application was build using ES6, SystemJS and Karma to represent a modern single page application complete with unit testing using Travis CI.
