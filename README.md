@@ -1,4 +1,4 @@
-# Flickr [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr)
+# Flickr Swift [![Build Status](https://travis-ci.org/tomsta93/flickr.svg?branch=master)](https://travis-ci.org/tomsta93/flickr)
 Lightweight, single page application utilising the Flickr API, that allows users to save and view favourite images locally.
 
 ## Intro
