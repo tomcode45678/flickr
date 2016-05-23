@@ -4,7 +4,10 @@ export default class DisplayImages {
   constructor (imageContainer) {
     this.imageContainer = imageContainer;
     this.savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
-    this.bindEvents();
+
+    if (imageContainer) {
+      this.bindEvents(imageContainer);
+    }
   }
 
   render(data) {
@@ -72,9 +75,8 @@ export default class DisplayImages {
     return imageCard;
   }
 
-  bindEvents() {
-    this.imageContainer.removeEventListener('click', this.selectedHandler.bind(this));
-    this.imageContainer.addEventListener('click', this.selectedHandler.bind(this));
+  bindEvents(imageContainer) {
+    imageContainer.addEventListener('click', this.selectedHandler.bind(this));
   }
 
   selectedHandler(e) {

@@ -23,77 +23,57 @@ describe('DisplayImages', function () {
     expect(DisplayImages.constructor.name).toEqual(jasmine.any(String));
   });
 
-  it('should set image data to a cached property', () => {
-    let mockData = {
-      items: [
-        {
-    			title: "",
-    			id: 29
-    	   },
-         {
-    			title: "The Fall",
-    			id: 20
-    	   }
-       ]
-    };
+  it('should cache and set a target container', () => {
+    let mockContainer = document.createElement('div');
+    let displayImages = new DisplayImages(mockContainer);
 
-    spyOn(DisplayImages.prototype, 'renderAssets');
-
-    let displayImages = new DisplayImages(mockData);
-
-    expect(displayImages.images).toBe(mockData.items);
+    expect(displayImages.imageContainer).toBe(mockContainer);
   });
 
-  it('should call a render method if there is a container', () => {
-    let mockData = {
-      items: 0
-    };
+  // it('should call a render method if there is a container', () => {
+  //   let mockData = {
+  //     items: 0
+  //   };
+  //
+  //   spyOn(DisplayImages.prototype, 'renderAssets');
+  //
+  //   let displayImages = new DisplayImages(mockData);
+  //
+  //   expect(DisplayImages.prototype.renderAssets).toHaveBeenCalledWith(mockData.items);
+  // });
 
-    spyOn(DisplayImages.prototype, 'renderAssets');
-
-    let displayImages = new DisplayImages(mockData);
-
-    expect(DisplayImages.prototype.renderAssets).toHaveBeenCalledWith(mockData.items);
-  });
-
-  it('should call a event binding method if there is a container', () => {
-    let mockData = {
-      items: 0
-    };
-
-    spyOn(DisplayImages.prototype, 'bindEvents');
-
-    let displayImages = new DisplayImages(mockData);
-
-    expect(DisplayImages.prototype.bindEvents).toHaveBeenCalled();
-  });
+  // it('should call a event binding method if there is a container', () => {
+  //   let mockData = {
+  //     items: 0
+  //   };
+  //
+  //   spyOn(DisplayImages.prototype, 'bindEvents');
+  //
+  //   let displayImages = new DisplayImages(mockData);
+  //
+  //   expect(DisplayImages.prototype.bindEvents).toHaveBeenCalled();
+  // });
 
   describe('renderAssets', function () {
     it('should equal a method', () => {
-      let mockData = {
-        items: []
-      };
-      let displayImages = new DisplayImages(mockData);
+      let displayImages = new DisplayImages();
 
       expect(displayImages.renderAssets).toEqual(jasmine.any(Function));
     });
 
     it('should create a document fragment', () => {
-      spyOn(document, 'createDocumentFragment').and.callThrough();
+      let mockContainer = () => document.createElement('div');
+      spyOn(document, 'createDocumentFragment').and.returnValue(mockContainer());
 
-      let mockData = {
-        items: []
-      };
-      let displayImages = new DisplayImages(mockData);
+      let displayImages = new DisplayImages(mockContainer());
+      displayImages.renderAssets([]);
 
       expect(document.createDocumentFragment).toHaveBeenCalled();
     });
 
     it('should call a render asset method', () => {
-      let mockData = {
-        items: []
-      };
-      let displayImages = new DisplayImages(mockData);
+      let mockContainer = () => document.createElement('div');
+      let displayImages = new DisplayImages(mockContainer());
 
       spyOn(displayImages, 'renderAsset').and.callThrough();
 
