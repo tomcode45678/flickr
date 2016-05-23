@@ -1,15 +1,19 @@
 const SAVED = 'saved';
 
 export default class DisplayImages {
-  constructor (data) {
-    this.imageContainer = document.querySelector('[data-image-container]');
+  constructor (imageContainer) {
+    this.imageContainer = imageContainer;
     this.savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
+    this.bindEvents();
+  }
 
-    if (this.imageContainer && data) {
-      this.images = data.items;
-      this.renderAssets(data.items);
-      this.bindEvents();
-    }
+  render(data) {
+    this.renderAssets(data.items);
+  }
+
+  renderSaved(callback) {
+    this.renderAssets(this.savedImages);
+    callback();
   }
 
   renderAssets(assets) {
@@ -69,6 +73,7 @@ export default class DisplayImages {
   }
 
   bindEvents() {
+    this.imageContainer.removeEventListener('click', this.selectedHandler.bind(this));
     this.imageContainer.addEventListener('click', this.selectedHandler.bind(this));
   }
 
@@ -119,10 +124,5 @@ export default class DisplayImages {
       }
     }
     return result;
-  }
-
-  renderSaved(callback) {
-    this.renderAssets(this.savedImages);
-    callback();
   }
 }

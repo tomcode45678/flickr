@@ -10,7 +10,7 @@ export default class API {
 
   setHandler(callback, dataHandler) {
     window[callback] = function (data) {
-      new dataHandler(data);
+      dataHandler(data);
       requestComplete();
     };
   }

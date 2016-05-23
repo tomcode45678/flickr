@@ -7,16 +7,15 @@ const callback = 'dataHandler';
 const URL_PATH = `http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=${callback}&tags=${TAGS}`;
 const imageContainer = document.querySelector('[data-image-container]');
 let lastAPICall = null;
+let displayImages = new DisplayImages(imageContainer);
 
 let urlRequest = function () {
-  lastAPICall = new API(URL_PATH, callback, DisplayImages, imageContainer);
+  lastAPICall = new API(URL_PATH, callback, displayImages.render.bind(displayImages), imageContainer);
 };
 
 urlRequest();
 
 let renderSavedImages = function () {
-  let displayImages = new DisplayImages();
-
   lastAPICall.clearUI(imageContainer);
   displayImages.renderSaved(lastAPICall.requestComplete);
 };
