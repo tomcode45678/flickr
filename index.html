@@ -10,7 +10,7 @@
   </head>
   <body>
 
-    <div class="demo-layout-transparent mdl-layout mdl-js-layout" data-mdl-layout>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded is-small-screen" data-mdl-layout>
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <h1>
@@ -28,15 +28,15 @@
           <button class="mdh-toggle-search mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-tablet mdl-cell--hide-desktop">
             <i class="material-icons">search</i>
           </button>
-          
-          <nav data-nav class="mdl-navigation">
-            <a class="mdl-navigation__link" data-page="index" href="index.html">Home</a>
-            <a class="mdl-navigation__link" data-page="saved" href="saved.html">
-              <span class="mdl-badge mdl-badge--heart" data-badge="&#x2665;">Saved</span>
-            </a>
-          </nav>
+
+          <div class="mdl-badge" data-badge="0">
+            <button class="mdl-button mdl-js-button mdl-button--icon">
+              <i class="material-icons">collections</i>
+            </button>
+          </div>
         </div>
       </header>
+
       <div class="mdl-layout__drawer" data-drawer>
         <span class="mdl-layout-title">Navigation</span>
         <nav data-nav class="mdl-navigation">
@@ -46,6 +46,7 @@
           </a>
         </nav>
       </div>
+
       <main class="mdl-layout__content">
         <section class="mdl-grid content" data-image-container></section>
       </main>
