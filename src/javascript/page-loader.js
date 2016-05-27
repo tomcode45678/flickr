@@ -10,7 +10,7 @@ export default class PageLoader {
 
   bindEvents(navigations) {
     for (let i = 0, navigationsLength = navigations.length; i < navigationsLength; i++) {
-      navigations[i].addEventListener('click', this.pageEventHandler.bind(this));
+      navigations[i].addEventListener('click', e => this.pageEventHandler(e));
     }
   }
 
@@ -22,7 +22,7 @@ export default class PageLoader {
 
     const DATA_ATTRIBUTE = 'data-page';
 
-    if (target.nodeName === 'SPAN') {
+    if (target.nodeName === 'SPAN' || target.nodeName === 'I') {
       target = target.parentNode;
     }
 
