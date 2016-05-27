@@ -3,6 +3,10 @@ body {
   background: $background-colour;
 }
 
+main.mdl-layout__content {
+  position: relative;
+}
+
 section.content {
   width: 85%;
   margin: 0 auto;
@@ -15,3 +19,4 @@ section.content {
 @import 'loader';
 @import 'cards';
 @import 'search';
+@import 'nav';

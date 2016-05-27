@@ -13,9 +13,13 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded is-small-screen" data-mdl-layout>
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
-          <h1>
-            <span class="mdl-layout-title">Flickr Swift</span>
-          </h1>
+          <nav data-nav class="mdl-navigation">
+            <h1>
+              <a class="mdl-navigation__link" data-page="index" href="index.html">
+                <span class="mdl-layout-title">Flickr Swift</span>
+              </a>
+            </h1>
+          </nav>
 
           <div class="mdh-expandable-search mdl-cell--hide-phone">
             <i class="material-icons">search</i>
@@ -29,11 +33,12 @@
             <i class="material-icons">search</i>
           </button>
 
-          <div class="mdl-badge" data-badge="0">
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+          <nav data-nav class="mdl-navigation">
+            <a class="mdl-navigation__link" data-page="saved" href="saved.html">
+              Saved
               <i class="material-icons">collections</i>
-            </button>
-          </div>
+            </a>
+          </nav>
         </div>
       </header>
 
@@ -50,8 +55,8 @@
       <main class="mdl-layout__content">
         <section class="mdl-grid content" data-image-container></section>
       </main>
+      <div class="spinner spinner--show" data-loading-spinner></div>
     </div>
-    <div class="spinner spinner--show" data-loading-spinner></div>
 
     <script data-systemjs-version="0.19.26" src="dist/javascript/libs.min.js"></script>
     <script src="dist/javascript/vendor.min.js"></script>
