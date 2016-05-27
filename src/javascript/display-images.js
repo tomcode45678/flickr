@@ -76,7 +76,7 @@ export default class DisplayImages {
   }
 
   bindEvents(imageContainer) {
-    imageContainer.addEventListener('click', this.selectedHandler.bind(this));
+    imageContainer.addEventListener('click', e => this.selectedHandler(e));
   }
 
   selectedHandler(e) {
@@ -84,6 +84,10 @@ export default class DisplayImages {
 
     while (target.nodeName !== "ARTICLE" && target !== document) {
       target = target.parentNode;
+    }
+
+    if (target === document) {
+      return;
     }
 
     target.classList.toggle(SAVED);
