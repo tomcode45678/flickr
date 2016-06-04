@@ -11,7 +11,7 @@ export default class DisplayImages {
   }
 
   render(data) {
-    this.renderAssets(data.items);
+    this.renderAssets(data.photos.photo);
   }
 
   renderSaved(callback) {
@@ -21,7 +21,6 @@ export default class DisplayImages {
 
   renderAssets(assets) {
     let imageFragments = document.createDocumentFragment();
-
     for (let i = 0, assetsLength = assets.length; i < assetsLength; i++) {
       let asset = assets[i];
       imageFragments.appendChild(this.renderAsset(asset));
@@ -33,18 +32,17 @@ export default class DisplayImages {
     let imageCardClass = 'mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--8-col-phone mdl-card mdl-shadow--2dp';
     let imageCard = document.createElement('article');
     let imageSrc = asset;
-    let image = null;
+    let image = document.createElement('img');
 
     if (typeof asset === 'object') {
-      let desc = document.createElement('div');
-      desc.innerHTML = asset.description;
-      image = desc.querySelector('img');
-      imageSrc = image.src;
+      const FARM = asset.farm;
+      const SERVER = asset.server;
+      const ID = asset.id;
+      const SECRET = asset.secret;
+      imageSrc = `https://farm${FARM}.staticflickr.com/${SERVER}/${ID}_${SECRET}_c.jpg`;
     }
-    else {
-      image = document.createElement('img');
-      image.src = imageSrc;
-    }
+
+    image.src = imageSrc;
 
     if (this.savedImage(imageSrc)) {
       imageCardClass = `${imageCardClass} ${SAVED}`;
