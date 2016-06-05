@@ -10,10 +10,10 @@
   </head>
   <body>
 
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded is-small-screen" data-mdl-layout>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded is-small-screen" data-mdl-layout>
       <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <nav data-nav class="mdl-navigation">
+        <div data-header-row class="mdl-layout__header-row">
+          <nav data-header-item data-nav class="mdl-navigation">
             <h1>
               <a class="mdl-navigation__link" data-page="index" href="index.html">
                 <span class="mdl-layout-title">Flickr Swift</span>
@@ -21,22 +21,22 @@
             </h1>
           </nav>
 
-          <div class="mdh-expandable-search mdl-cell--hide-phone">
+          <div data-desktop-search class="mdh-expandable-search mdl-cell--hide-phone desktop">
             <i class="material-icons">search</i>
             <form action="#">
-              <input type="text" placeholder="Search" size="1">
+              <input data-search type="text" placeholder="Search" value="beautiful landscape" size="1">
             </form>
           </div>
 
-          <div class="mdl-layout-spacer mdl-cell--hide-tablet mdl-cell--hide-desktop"></div>
-          <button class="mdh-toggle-search mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-tablet mdl-cell--hide-desktop">
+          <div data-header-item class="mdl-layout-spacer mdl-cell--hide-tablet mdl-cell--hide-desktop"></div>
+          <button data-mobile-search class="mdh-toggle-search mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-tablet mdl-cell--hide-desktop">
             <i class="material-icons">search</i>
           </button>
 
-          <nav data-nav class="mdl-navigation">
+          <nav data-header-item data-nav class="mdl-navigation">
             <a class="mdl-navigation__link" data-page="saved" href="saved.html">
               Saved
-              <i class="material-icons">collections</i>
+              <i class="saved__icon--small material-icons">collections</i>
             </a>
           </nav>
         </div>
@@ -45,9 +45,11 @@
       <div class="mdl-layout__drawer" data-drawer>
         <span class="mdl-layout-title">Navigation</span>
         <nav data-nav class="mdl-navigation">
-          <a class="mdl-navigation__link" data-page="index" href="index.html">Home</a>
+          <a class="mdl-navigation__link" data-page="index" href="index.html">
+            Search <i class="saved__icon--small material-icons">search</i>
+          </a>
           <a class="mdl-navigation__link" data-page="saved" href="saved.html">
-            <span class="mdl-badge mdl-badge--heart" data-badge="&#x2665;">Saved</span>
+            Saved <i class="saved__icon--small material-icons">collections</i>
           </a>
         </nav>
       </div>
@@ -63,6 +65,5 @@
     <script>
       System.import('javascript/main');
     </script>
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   </body>
 </html>

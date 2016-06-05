@@ -16,6 +16,10 @@ section.content {
   }
 }
 
+.hidden {
+  display: none !important;
+}
+
 @import 'loader';
 @import 'cards';
 @import 'search';

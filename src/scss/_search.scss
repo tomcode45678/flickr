@@ -1,7 +1,13 @@
+$opacity: 0.25;
+
 .mdh-expandable-search {
-  margin: 0 50px;
+  margin: 0 16px 0 0;
   align-items: center;
   justify-content: center;
+
+  &.desktop {
+    margin: 0 50px;
+  }
 }
 
 .mdh-expandable-search form {
@@ -36,30 +42,27 @@
   outline: none;
   border: none;
   font-size: 16px;
-  color: #FFFFFF;
-  background-color: rgba(225, 225, 225, 0.2);
+  color: #FFF;
+  background-color: rgba(225, 225, 225, $opacity);
   padding: 0px 35px 0px 70px;
   height: 40px;
   line-height: 40px;
-
-  border-radius: 5px 5px 5px 5px;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
 }
 
 .mdh-expandable-search input::-webkit-input-placeholder {
-  color: #FFFFFF;
+  color: #FFF;
 }
 .mdh-expandable-search input:-moz-placeholder {
-  color: #FFFFFF;
+  color: #FFF;
   opacity: 1;
 }
 .mdh-expandable-search input::-moz-placeholder {
-  color: #FFFFFF;
+  color: #FFF;
   opacity: 1;
 }
 .mdh-expandable-search input:-ms-input-placeholder {
-  color: #FFFFFF;
+  color: #FFF;
 }
 
 @media screen and (min-width: 851px) {

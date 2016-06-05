@@ -11,7 +11,19 @@ export default class DisplayImages {
   }
 
   render(data) {
-    this.renderAssets(data.photos.photo);
+    let photo = data.photos.photo;
+    if (photo.length) {
+      this.renderAssets(photo);
+    }
+    else {
+      let sorryMessage = document.createElement('div');
+      let sorry = document.createTextNode(`
+        We're sorry, we could not retrieve any images from Flickr matching your search.
+      `);
+
+      sorryMessage.appendChild(sorry);
+      this.imageContainer.appendChild(sorryMessage);
+    }
   }
 
   renderSaved(callback) {
@@ -25,6 +37,7 @@ export default class DisplayImages {
       let asset = assets[i];
       imageFragments.appendChild(this.renderAsset(asset));
     }
+    this.imageContainer.innerHTML = '';
     this.imageContainer.appendChild(imageFragments);
   }
 
