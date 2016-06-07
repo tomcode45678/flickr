@@ -18,12 +18,27 @@ export default class Search {
   bindEvents(request) {
     let timer = setTimeout;
     SEARCH.addEventListener('keyup', e => {
-      let keyCode = e.keyCode;
-      if ((keyCode > 45 && keyCode < 91) || keyCode === 8) {
+      if (this.testKey(e)) {
         clearTimeout(timer);
         timer = setTimeout(request, 400);
       }
+      e.preventDefault();
     });
+  }
+
+  testKey(e) {
+    let value = false;
+    if (e.key && /[a-z]|[A-Z]|[0-9]/.test(e.key)) {
+      value = true;
+    }
+    else if (e.keyCode) {
+      let keyCode = e.keyCode;
+      if ((keyCode > 45 && keyCode < 91) || keyCode === 8) {
+        value = true;
+      }
+      value = false;
+    }
+    return value;
   }
 
   mobileSearch () {
