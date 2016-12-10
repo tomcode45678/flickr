@@ -1,9 +1,11 @@
 const SAVED = 'saved';
+const NEXT_BTN = 'next-page';
 
 export default class DisplayImages {
-  constructor (imageContainer) {
+  constructor (imageContainer, CONFIG) {
     this.imageContainer = imageContainer;
     this.savedImages = JSON.parse(localStorage.getItem('savedImages')) || [];
+    this.config = CONFIG;
 
     if (imageContainer) {
       this.bindEvents(imageContainer);
@@ -39,6 +41,12 @@ export default class DisplayImages {
     }
     this.imageContainer.innerHTML = '';
     this.imageContainer.appendChild(imageFragments);
+
+    const nextButton = document.createElement('button');
+    nextButton.id = NEXT_BTN;
+    nextButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect';
+    nextButton.textContent = 'Next';
+    this.imageContainer.appendChild(nextButton);
   }
 
   renderAsset(asset) {
@@ -93,11 +101,19 @@ export default class DisplayImages {
   selectedHandler(e) {
     let target = e.target;
 
-    while (target.nodeName !== "ARTICLE" && target !== document) {
+    while (target.nodeName !== 'ARTICLE' && target.nodeName !== 'BUTTON' && target !== document) {
       target = target.parentNode;
     }
 
     if (target === document) {
+      return;
+    }
+
+    if (target.id === NEXT_BTN) {
+      this.config.page++;
+      if (this.urlRequest) {
+        this.urlRequest();
+      }
       return;
     }
 
