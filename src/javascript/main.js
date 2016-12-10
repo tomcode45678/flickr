@@ -5,24 +5,29 @@ import Search from './search';
 
 const KEY = '7677e20284c7594041992c9bdd391d8a';
 const AMOUNT = 24;
-const PAGE = 1;
+const CONFIG = {
+  page: 1
+};
 const imageContainer = document.querySelector('[data-image-container]');
 
-let searchBar = () => Search.searchBar().value;
-let URI = () => `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${KEY}&text=${searchBar()}&per_page=${AMOUNT}&page=${PAGE}&content_type=1&format=json&nojsoncallback=1`;
-let lastAPICall = null;
-let displayImages = new DisplayImages(imageContainer);
+const searchBar = () => Search.searchBar().value;
+const URI = () => `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${KEY}&text=${searchBar()}&per_page=${AMOUNT}&page=${CONFIG.page}&content_type=1&format=json&nojsoncallback=1`;
+const displayImages = new DisplayImages(imageContainer, CONFIG);
 
-let urlRequest = function () {
+let lastAPICall = null;
+
+const urlRequest = function () {
   if (searchBar().length < 3) {
     return;
   }
   lastAPICall = new API(URI(), displayImages.render.bind(displayImages), imageContainer);
 };
 
+displayImages.urlRequest = urlRequest;
+
 urlRequest();
 
-let renderSavedImages = function () {
+const renderSavedImages = function () {
   lastAPICall.clearUI(imageContainer);
   displayImages.renderSaved(lastAPICall.requestComplete);
 };
@@ -32,4 +37,4 @@ new PageLoader([
   { page: 'saved', callback: renderSavedImages }
 ]);
 
-new Search(urlRequest);
+new Search(urlRequest, CONFIG);

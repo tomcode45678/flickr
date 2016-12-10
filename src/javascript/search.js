@@ -6,7 +6,8 @@ const DESKTOP_SEARCH = document.querySelector('[data-desktop-search]');
 const MOBILE_ICON = MOBILE_SEARCH.querySelector('i');
 
 export default class Search {
-  constructor (request) {
+  constructor (request, config) {
+    this.config = config;
     this.bindEvents(request);
     this.mobileSearch();
   }
@@ -20,6 +21,7 @@ export default class Search {
     SEARCH.addEventListener('keyup', e => {
       if (this.testKey(e)) {
         clearTimeout(timer);
+        this.config.page = 1;
         timer = setTimeout(request, 400);
       }
       e.preventDefault();
